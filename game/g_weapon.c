@@ -19,7 +19,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "g_local.h"
 
-
+int rocketCount = 0;
+int rocketMax = 20;
 /*
 =================
 check_dodge
@@ -560,6 +561,51 @@ void fire_grenade2 (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int 
 	}
 }
 
+void base_edict(edict_t *ed)
+{
+	rocketCount--;
+	G_FreeEdict(ed);
+}
+
+void Split_Edict(edict_t *ed)
+{
+	trace_t		tr;
+	vec3_t		dir;
+	vec3_t		forward, right, up;
+	vec3_t		end;
+	vec3_t		start;
+	float		r;
+	float		u;
+
+
+	VectorCopy(start, ed->pos1);
+
+
+	int		damage;
+	float	damage_radius;
+	int		radius_damage;
+	radius_damage = ed->radius_dmg;
+	damage_radius = ed->radius_dmg;
+	damage_radius = ed->dmg;
+
+	for (int i = 0; i < 2; i++)
+	{
+		vectoangles(ed->movedir, dir);
+		AngleVectors(dir, forward, right, up);
+
+		r = crandom() * 300;
+		u = crandom() * 300;
+		VectorMA(start, 8192, forward, end);
+		VectorMA(end, r, right, end);
+		VectorMA(end, u, up, end);
+
+		VectorSubtract(end, start, forward);
+
+		fire_rocket(ed->owner, start, forward, damage, 650, damage_radius, radius_damage);
+	}
+
+	base_edict(ed);
+}
 
 /*
 =================
@@ -571,12 +617,12 @@ void rocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *su
 	vec3_t		origin;
 	int			n;
 
-	if (other == ent->owner)
+	if (other == ent->owner || other->classname == "rocket")
 		return;
 
 	if (surf && (surf->flags & SURF_SKY))
 	{
-		G_FreeEdict (ent);
+		base_edict(ent);
 		return;
 	}
 
@@ -614,8 +660,10 @@ void rocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *su
 	gi.WritePosition (origin);
 	gi.multicast (ent->s.origin, MULTICAST_PHS);
 
-	G_FreeEdict (ent);
+	base_edict(ent);
 }
+
+
 
 void fire_rocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage)
 {
@@ -635,8 +683,16 @@ void fire_rocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed
 	rocket->s.modelindex = gi.modelindex ("models/objects/rocket/tris.md2");
 	rocket->owner = self;
 	rocket->touch = rocket_touch;
-	rocket->nextthink = level.time + 8000/speed;
-	rocket->think = G_FreeEdict;
+	if (rocketCount >= rocketMax)
+	{
+		rocket->nextthink = level.time + 8000/speed;
+		rocket->think = base_edict;
+	}
+	else
+	{
+		rocket->nextthink = level.time + .5;
+		rocket->think = Split_Edict;
+	}
 	rocket->dmg = damage;
 	rocket->radius_dmg = radius_damage;
 	rocket->dmg_radius = damage_radius;
@@ -646,8 +702,10 @@ void fire_rocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed
 	if (self->client)
 		check_dodge (self, rocket->s.origin, dir, speed);
 
+	rocketCount++;
 	gi.linkentity (rocket);
 }
+
 
 
 /*
