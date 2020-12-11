@@ -494,6 +494,7 @@ typedef struct
 	short		gravity;
 	short		delta_angles[3];	// add to command angles to get view direction
 									// changed by spawns, rotating objects, and teleporters
+	short		jumpsCount = 0;
 } pmove_state_t;
 
 

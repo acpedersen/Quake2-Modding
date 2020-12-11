@@ -1,0 +1,60 @@
+﻿Build started 12/11/2020 7:36:57 AM.
+     1>Project "C:\Programming\quake2-full\quake2.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(357,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.exe" /INCREMENTAL:NO /NOLOGO winmm.lib wsock32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.lib" /MACHINE:X86 /SAFESEH .\debug\q2.res
+         .\debug\cd_win.obj
+         .\debug\cl_cin.obj
+         .\debug\cl_ents.obj
+         .\debug\cl_fx.obj
+         .\debug\cl_input.obj
+         .\debug\cl_inv.obj
+         .\debug\cl_main.obj
+         .\debug\cl_newfx.obj
+         .\debug\cl_parse.obj
+         .\debug\cl_pred.obj
+         .\debug\cl_scrn.obj
+         .\debug\cl_tent.obj
+         .\debug\cl_view.obj
+         .\debug\cmd.obj
+         .\debug\cmodel.obj
+         .\debug\common.obj
+         .\debug\conproc.obj
+         .\debug\console.obj
+         .\debug\crc.obj
+         .\debug\cvar.obj
+         .\debug\files.obj
+         .\debug\in_win.obj
+         .\debug\keys.obj
+         .\debug\m_flash.obj
+         .\debug\md4.obj
+         .\debug\menu.obj
+         .\debug\net_chan.obj
+         .\debug\net_wins.obj
+         .\debug\pmove.obj
+         .\debug\q_shared.obj
+         .\debug\q_shwin.obj
+         .\debug\qmenu.obj
+         .\debug\snd_dma.obj
+         .\debug\snd_mem.obj
+         .\debug\snd_mix.obj
+         .\debug\snd_win.obj
+         .\debug\sv_ccmds.obj
+         .\debug\sv_ents.obj
+         .\debug\sv_game.obj
+         .\debug\sv_init.obj
+         .\debug\sv_main.obj
+         .\debug\sv_send.obj
+         .\debug\sv_user.obj
+         .\debug\sv_world.obj
+         .\debug\sys_win.obj
+         .\debug\vid_dll.obj
+         .\debug\vid_menu.obj
+         .\debug\x86.obj
+     1>cd_win.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+         quake2.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.exe
+     1>Done Building Project "C:\Programming\quake2-full\quake2.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.12

@@ -779,6 +779,7 @@ void PM_CheckJump (void)
 {
 	if (pm->s.pm_flags & PMF_TIME_LAND)
 	{	// hasn't been long enough since landing to jump again
+		//if (pm->s.jumpsCount >= 2)
 		return;
 	}
 
@@ -817,9 +818,10 @@ void PM_CheckJump (void)
 	pm->s.pm_flags |= PMF_JUMP_HELD;
 
 	pm->groundentity = NULL;
-	pml.velocity[2] += 270;
-	if (pml.velocity[2] < 270)
-		pml.velocity[2] = 270;
+	int jumpVelocity = 500 + (pm->s.jumpsCount * 250);
+	pml.velocity[2] += jumpVelocity;
+	if (pml.velocity[2] < jumpVelocity)
+		pml.velocity[2] = jumpVelocity;
 }
 
 
