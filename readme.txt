@@ -6,3 +6,5 @@ Inside that there is a shortcut that may have to have it's target directory chan
 
 
 To test the mod, simply create a deathmatch network and see that you have an increasing height jump that resets if you are too slow. Jumping on any enemy will kill them. Their is a coin counter above ammo, the only way to add to it though is to use the cmd "give coin #" where # is how many coins to give, although if none is set the default is 5.
+
+To test 3rd person camera, type in chasecam into the console to enable it. Chasecam was entirely from this tutorial https://www.quakewiki.net/archives/qdevels/quake2/29_6_98.html
