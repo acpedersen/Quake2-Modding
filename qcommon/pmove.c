@@ -819,11 +819,8 @@ void PM_CheckJump (void)
 
 	pm->s.pm_flags |= PMF_JUMP_HELD;
 	
-	int		msec;
-	msec = pm->cmd.msec >> 3;
-	if (!msec)
-		msec = 1;
-	if (msec <= pm->s.mario_jump_time && pm->s.jumpsCount < 2)
+	
+	if (pm->s.mario_jump_time > 0 && pm->s.jumpsCount < 2)
 	{
 		pm->s.jumpsCount++;
 	}
@@ -1332,7 +1329,28 @@ void Pmove (pmove_t *pmove)
 			pm->s.pm_time = 0;
 		}
 		else
+		{
+
 			pm->s.pm_time -= msec;
+		}
+	}
+	if (pm->s.mario_jump_time)
+	{
+		int		msec;
+
+		msec = pm->cmd.msec >> 3;
+		if (!msec)
+			msec = 1;
+		if (msec >= pm->s.mario_jump_time)
+		{
+			//pm->s.pm_flags &= ~(PMF_TIME_WATERJUMP | PMF_TIME_LAND | PMF_TIME_TELEPORT);
+			pm->s.mario_jump_time = 0;
+			//pm->s.jumpsCount = -1;
+		}
+		else
+		{
+			pm->s.mario_jump_time -= msec;
+		}
 	}
 
 	if (pm->s.pm_flags & PMF_TIME_TELEPORT)

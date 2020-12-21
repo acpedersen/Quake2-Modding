@@ -219,6 +219,7 @@ void M_WorldEffects (edict_t *ent)
 {
 	int		dmg;
 
+
 	if (ent->health > 0)
 	{
 		if (!(ent->flags & FL_SWIM))

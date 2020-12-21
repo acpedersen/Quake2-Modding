@@ -31,6 +31,7 @@ void SP_item_health (edict_t *self);
 void SP_item_health_small (edict_t *self);
 void SP_item_health_large (edict_t *self);
 void SP_item_health_mega (edict_t *self);
+void SP_item_coin(edict_t *self);
 
 void SP_info_player_start (edict_t *ent);
 void SP_info_player_deathmatch (edict_t *ent);
@@ -137,6 +138,7 @@ void SP_monster_supertank (edict_t *self);
 void SP_monster_boss2 (edict_t *self);
 void SP_monster_jorg (edict_t *self);
 void SP_monster_boss3_stand (edict_t *self);
+void SP_monster_goomba(edict_t *self);
 
 void SP_monster_commander_body (edict_t *self);
 
@@ -149,7 +151,8 @@ spawn_t	spawns[] = {
 	{"item_health", SP_item_health},
 	{"item_health_small", SP_item_health_small},
 	{"item_health_large", SP_item_health_large},
-	{"item_health_mega", SP_item_health_mega},
+	{ "item_health_mega", SP_item_health_mega },
+	{ "item_coin", SP_item_coin },
 
 	{"info_player_start", SP_info_player_start},
 	{"info_player_deathmatch", SP_info_player_deathmatch},
@@ -257,7 +260,8 @@ spawn_t	spawns[] = {
 	{"monster_supertank", SP_monster_supertank},
 	{"monster_boss2", SP_monster_boss2},
 	{"monster_boss3_stand", SP_monster_boss3_stand},
-	{"monster_jorg", SP_monster_jorg},
+	{ "monster_jorg", SP_monster_jorg },
+	//{ "monster_goomba", SP_monster_goomba },
 
 	{"monster_commander_body", SP_monster_commander_body},
 
@@ -701,6 +705,16 @@ char *single_statusbar =
 "	xv	148 "
 "	pic	11 "
 "endif "
+
+
+//Coin Counter
+//"if 18 "
+"xv 230 "
+"num 3	18 "
+"xv 250 "
+"yb -59 "
+"string COINS "
+//"end if "
 ;
 
 char *dm_statusbar =
@@ -780,6 +794,15 @@ char *dm_statusbar =
   "xv 64 "
   "stat_string 16 "
 "endif "
+
+//Coin Counter
+//"if 18 "
+"xv 230 "
+"num 3	18 "
+"xv 250 "
+"yb -59 "
+"string COINS "
+//"end if "
 ;
 
 

@@ -585,6 +585,14 @@ qboolean Pickup_Health (edict_t *ent, edict_t *other)
 	return true;
 }
 
+qboolean Pickup_Coin(edict_t *ent, edict_t *other)
+{
+
+	other->coins += ent->count;
+
+	return true;
+}
+
 //======================================================================
 
 int ArmorIndex (edict_t *ent)
@@ -2110,6 +2118,26 @@ tank commander's head
 		0,
 /* precache */ "items/s_health.wav items/n_health.wav items/l_health.wav items/m_health.wav"
 	},
+	{
+		NULL,
+		Pickup_Coin,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		/* icon */		"i_health",
+		/* pickup */	"Coin",
+		/* width */		3,
+		0,
+		NULL,
+		0,
+		0,
+		NULL,
+		0,
+		/* precache */ "items/s_health.wav items/n_health.wav items/l_health.wav items/m_health.wav"
+	},
 
 	// end of list marker
 	{NULL}
@@ -2130,6 +2158,15 @@ void SP_item_health (edict_t *self)
 	self->count = 10;
 	SpawnItem (self, FindItem ("Health"));
 	gi.soundindex ("items/n_health.wav");
+}
+
+void SP_item_coin(edict_t *self)
+{
+
+	self->model = "models/items/healing/medium/tris.md2";
+	self->count = 5;
+	SpawnItem(self, FindItem("Coin"));
+	gi.soundindex("items/n_health.wav");
 }
 
 /*QUAKED item_health_small (.3 .3 1) (-16 -16 -16) (16 16 16)

@@ -181,6 +181,16 @@ void Cmd_Give_f (edict_t *ent)
 			return;
 	}
 
+	if (Q_stricmp(gi.argv(1), "coin") == 0)
+	{
+		if (gi.argc() == 3)
+			ent->coins += atoi(gi.argv(2));
+		else
+			ent->coins += 5;
+		if (!give_all)
+			return;
+	}
+
 	if (give_all || Q_stricmp(name, "weapons") == 0)
 	{
 		for (i=0 ; i<game.num_items ; i++)

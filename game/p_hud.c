@@ -380,6 +380,8 @@ void G_SetStats (edict_t *ent)
 	int			index, cells;
 	int			power_armor_type;
 
+
+
 	//
 	// health
 	//
@@ -520,6 +522,8 @@ void G_SetStats (edict_t *ent)
 		ent->client->ps.stats[STAT_HELPICON] = 0;
 
 	ent->client->ps.stats[STAT_SPECTATOR] = 0;
+
+	ent->client->ps.stats[STAT_COINS] = ent->coins;
 }
 
 /*

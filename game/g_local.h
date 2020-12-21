@@ -685,6 +685,7 @@ void monster_fire_bfg (edict_t *self, vec3_t start, vec3_t aimdir, int damage, i
 void M_droptofloor (edict_t *ent);
 void monster_think (edict_t *self);
 void walkmonster_start (edict_t *self);
+void goomba_think(edict_t *self);
 void swimmonster_start (edict_t *self);
 void flymonster_start (edict_t *self);
 void AttackFinished (edict_t *self, float time);
@@ -957,8 +958,12 @@ struct gclient_s
 
 	float		respawn_time;		// can respawn when time > this
 
+
 	edict_t		*chase_target;		// player we are chasing
 	qboolean	update_chase;		// need to update chase info?
+
+	int			coins;
+
 };
 
 
@@ -1056,6 +1061,8 @@ struct edict_s
 	int			gib_health;
 	int			deadflag;
 	qboolean	show_hostile;
+
+	int coins;
 
 	float		powerarmor_time;
 

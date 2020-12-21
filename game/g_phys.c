@@ -912,6 +912,13 @@ void SV_Physics_Step (edict_t *ent)
 		if (!ent->inuse)
 			return;
 
+		/*
+		if (ent->client && ent->groundentity && ent->groundentity->svflags & SVF_MONSTER)
+		{
+			T_Damage(ent->groundentity, world, world, vec3_origin, ent->groundentity->s.origin, vec3_origin, ent->groundentity->health, 0, DAMAGE_NO_ARMOR, MOD_CRUSH);
+		}
+		*/
+
 		if (ent->groundentity)
 			if (!wasonground)
 				if (hitsound)
