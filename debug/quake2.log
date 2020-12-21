@@ -1,7 +1,10 @@
-﻿Build started 12/11/2020 7:36:57 AM.
+﻿Build started 12/21/2020 9:58:10 AM.
      1>Project "C:\Programming\quake2-full\quake2.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(357,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /Gm- /EHsc /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\debug\\" /Fd".\debug\vc120.pdb" /FR".\debug\\" /Gd /TC /analyze- /errorReport:prompt qcommon\pmove.c
+         pmove.c
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.exe" /INCREMENTAL:NO /NOLOGO winmm.lib wsock32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.lib" /MACHINE:X86 /SAFESEH .\debug\q2.res
          .\debug\cd_win.obj
          .\debug\cl_cin.obj
@@ -53,8 +56,10 @@
          .\debug\x86.obj
      1>cd_win.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
          quake2.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\quake2.exe
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o".\debug\quake2.bsc" .\debug\cd_win.sbr .\debug\cl_cin.sbr .\debug\cl_ents.sbr .\debug\cl_fx.sbr .\debug\cl_input.sbr .\debug\cl_inv.sbr .\debug\cl_main.sbr .\debug\cl_newfx.sbr .\debug\cl_parse.sbr .\debug\cl_pred.sbr .\debug\cl_scrn.sbr .\debug\cl_tent.sbr .\debug\cl_view.sbr .\debug\cmd.sbr .\debug\cmodel.sbr .\debug\common.sbr .\debug\conproc.sbr .\debug\console.sbr .\debug\crc.sbr .\debug\cvar.sbr .\debug\files.sbr .\debug\in_win.sbr .\debug\keys.sbr .\debug\m_flash.sbr .\debug\md4.sbr .\debug\menu.sbr .\debug\net_chan.sbr .\debug\net_wins.sbr .\debug\pmove.sbr .\debug\q_shared.sbr .\debug\q_shwin.sbr .\debug\qmenu.sbr .\debug\snd_dma.sbr .\debug\snd_mem.sbr .\debug\snd_mix.sbr .\debug\snd_win.sbr .\debug\sv_ccmds.sbr .\debug\sv_ents.sbr .\debug\sv_game.sbr .\debug\sv_init.sbr .\debug\sv_main.sbr .\debug\sv_send.sbr .\debug\sv_user.sbr .\debug\sv_world.sbr .\debug\sys_win.sbr .\debug\vid_dll.sbr .\debug\vid_menu.sbr .\debug\x86.sbr
      1>Done Building Project "C:\Programming\quake2-full\quake2.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.12
+Time Elapsed 00:00:01.87

@@ -581,8 +581,8 @@ void PM_AirMove (void)
 	float		wishspeed;
 	float		maxspeed;
 
-	fmove = pm->cmd.forwardmove;
-	smove = pm->cmd.sidemove;
+	fmove = pm->cmd.forwardmove*1.2;
+	smove = pm->cmd.sidemove*1.1;
 	
 //!!!!! pitch should be 1/3 so this isn't needed??!
 #if 0
@@ -619,13 +619,13 @@ void PM_AirMove (void)
 		{
 			if (pml.velocity[2] > 0)
 			{
-				pml.velocity[2] -= pm->s.gravity * pml.frametime;
+				pml.velocity[2] -= pm->s.gravity * 0.85 * pml.frametime;
 				if (pml.velocity[2] < 0)
 					pml.velocity[2]  = 0;
 			}
 			else
 			{
-				pml.velocity[2] += pm->s.gravity * pml.frametime;
+				pml.velocity[2] += pm->s.gravity * 0.85 * pml.frametime;
 				if (pml.velocity[2] > 0)
 					pml.velocity[2]  = 0;
 			}
@@ -642,7 +642,7 @@ void PM_AirMove (void)
 		if(pm->s.gravity > 0)
 			pml.velocity[2] = 0;
 		else
-			pml.velocity[2] -= pm->s.gravity * pml.frametime;
+			pml.velocity[2] -= pm->s.gravity * 0.85 * pml.frametime;
 // PGM
 
 		if (!pml.velocity[0] && !pml.velocity[1])
@@ -656,7 +656,7 @@ void PM_AirMove (void)
 		else
 			PM_Accelerate (wishdir, wishspeed, 1);
 		// add gravity
-		pml.velocity[2] -= pm->s.gravity * pml.frametime;
+		pml.velocity[2] -= pm->s.gravity* 0.85 * pml.frametime;
 		PM_StepSlideMove ();
 	}
 }
@@ -713,6 +713,8 @@ void PM_CatagorizePosition (void)
 
 			if (! (pm->s.pm_flags & PMF_ON_GROUND) )
 			{	// just hit the ground
+
+				pm->s.mario_jump_time = 125;
 				pm->s.pm_flags |= PMF_ON_GROUND;
 				// don't do landing time if we were just going down a slope
 				if (pml.velocity[2] < -200)
@@ -816,9 +818,24 @@ void PM_CheckJump (void)
 		return;		// in air, so no effect
 
 	pm->s.pm_flags |= PMF_JUMP_HELD;
+	
+	int		msec;
+	msec = pm->cmd.msec >> 3;
+	if (!msec)
+		msec = 1;
+	if (msec <= pm->s.mario_jump_time && pm->s.jumpsCount < 2)
+	{
+		pm->s.jumpsCount++;
+	}
+	else
+	{
+		pm->s.jumpsCount = 0;
+	}
+
+	pm->s.mario_jump_time = 0;
 
 	pm->groundentity = NULL;
-	int jumpVelocity = 500 + (pm->s.jumpsCount * 250);
+	int jumpVelocity = 300 + (pm->s.jumpsCount * 200);
 	pml.velocity[2] += jumpVelocity;
 	if (pml.velocity[2] < jumpVelocity)
 		pml.velocity[2] = jumpVelocity;
@@ -1323,7 +1340,7 @@ void Pmove (pmove_t *pmove)
 	}
 	else if (pm->s.pm_flags & PMF_TIME_WATERJUMP)
 	{	// waterjump has no control, but falls
-		pml.velocity[2] -= pm->s.gravity * pml.frametime;
+		pml.velocity[2] -= pm->s.gravity* 0.85 * pml.frametime;
 		if (pml.velocity[2] < 0)
 		{	// cancel as soon as we are falling down again
 			pm->s.pm_flags &= ~(PMF_TIME_WATERJUMP | PMF_TIME_LAND | PMF_TIME_TELEPORT);
