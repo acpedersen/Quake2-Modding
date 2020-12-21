@@ -714,7 +714,7 @@ void PM_CatagorizePosition (void)
 			if (! (pm->s.pm_flags & PMF_ON_GROUND) )
 			{	// just hit the ground
 
-				pm->s.mario_jump_time = 125;
+				pm->s.mario_jump_time = 100;
 				pm->s.pm_flags |= PMF_ON_GROUND;
 				// don't do landing time if we were just going down a slope
 				if (pml.velocity[2] < -200)
